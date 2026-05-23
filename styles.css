@@ -29,13 +29,16 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body {
     font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
     font-weight: 400; font-size: 17px; line-height: 1.7;
     color: var(--charcoal); background: var(--ivory);
+    overflow-x: hidden;
 }
 img { max-width: 100%; height: auto; display: block; }
+*, *::before, *::after { max-width: 100vw; }
+.hero, .trust-strip, .experiences, .why-section, .booking-paths, .inquiry-section, .final-cta, .site-footer { overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
@@ -94,6 +97,7 @@ em { font-style: italic; }
 .header-inner {
     max-width: var(--max-width); margin: 0 auto; padding: 0 2rem;
     height: 100%; display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
 }
 .header-logo { display: flex; align-items: center; gap: .75rem; }
 .logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; }
@@ -123,16 +127,17 @@ em { font-style: italic; }
 .nav-cta:hover { background: linear-gradient(135deg, var(--gold-warm), var(--gold-soft)); }
 
 .mobile-toggle {
-    display: none; flex-direction: column; gap: 5px;
-    background: none; border: none; cursor: pointer; padding: 4px; z-index: 1001;
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 6px; background: none; border: none; cursor: pointer;
+    padding: 8px; z-index: 1001; width: 44px; height: 44px;
 }
 .mobile-toggle span {
-    display: block; width: 26px; height: 2px; background: var(--gold);
-    transition: all .3s ease; border-radius: 2px;
+    display: block; width: 24px; height: 2px; background: var(--gold);
+    transition: all .3s ease; border-radius: 2px; flex-shrink: 0;
 }
-.mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
 .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-.mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
 /* ---------- HERO ---------- */
 .hero {
@@ -145,7 +150,8 @@ em { font-style: italic; }
     position: absolute; inset: 0; z-index: 0;
     background: url('assets/hero-bg.png') center center / cover no-repeat;
     filter: blur(2px) brightness(.42);
-    transform: scale(1.05); /* prevent blur white edges */
+    transform: scale(1.08); /* prevent blur white edges */
+    will-change: transform;
 }
 
 /* Animated gold glow orbs */
