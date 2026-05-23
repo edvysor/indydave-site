@@ -8,20 +8,41 @@
 
     var toggle = document.getElementById('mobileToggle');
     var nav = document.getElementById('mainNav');
+    var backdrop = document.getElementById('navBackdrop');
+
+    function closeNav() {
+        nav.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (backdrop) backdrop.classList.remove('visible');
+    }
+
+    function openNav() {
+        nav.classList.add('open');
+        toggle.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        if (backdrop) backdrop.classList.add('visible');
+    }
+
     if (toggle && nav) {
         toggle.addEventListener('click', function () {
-            var open = nav.classList.toggle('open');
-            toggle.classList.toggle('active');
-            toggle.setAttribute('aria-expanded', String(open));
-            document.body.style.overflow = open ? 'hidden' : '';
+            if (nav.classList.contains('open')) {
+                closeNav();
+            } else {
+                openNav();
+            }
         });
+
+        // Close when tapping backdrop
+        if (backdrop) {
+            backdrop.addEventListener('click', closeNav);
+        }
+
+        // Close when tapping a nav link
         nav.querySelectorAll('.nav-link').forEach(function (link) {
-            link.addEventListener('click', function () {
-                nav.classList.remove('open');
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', closeNav);
         });
     }
 
