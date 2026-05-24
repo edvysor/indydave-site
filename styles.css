@@ -1,5 +1,5 @@
 /* ============================================================
-   IndyDave Travel Collective — Full Stylesheet
+   IndyDave Travel Collective â€” Full Stylesheet
    ============================================================ */
 
 :root {
@@ -197,7 +197,7 @@ em { font-style: italic; }
     background: radial-gradient(circle, rgba(200,155,60,.18) 0%, transparent 55%);
 }
 
-/* Gold light streaks — animated traveling lines */
+/* Gold light streaks â€” animated traveling lines */
 .gold-streak {
     position: absolute; height: 1px; z-index: 1; pointer-events: none;
     background: linear-gradient(90deg, transparent 0%, rgba(200,155,60,.36) 30%, rgba(241,210,138,.6) 50%, rgba(200,155,60,.36) 70%, transparent 100%);
@@ -391,11 +391,12 @@ em { font-style: italic; }
 .booking-paths { padding: 7rem 0; background: var(--navy-deep); text-align: center; }
 .booking-paths .section-eyebrow { color: var(--gold); }
 .booking-paths .section-headline { color: var(--ivory); margin-bottom: 3rem; }
-.path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; text-align: left; }
+.path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; text-align: left; box-sizing: border-box; }
 .path-card {
     position: relative; background: rgba(255,255,255,.04);
     border: 1px solid rgba(200,155,60,.15); border-radius: var(--radius-lg);
     padding: 2.5rem 2rem; transition: all var(--transition);
+    box-sizing: border-box; min-width: 0; overflow-wrap: break-word;
 }
 .path-card:hover { background: rgba(255,255,255,.06); border-color: rgba(200,155,60,.3); transform: translateY(-3px); }
 .path-concierge { border-color: rgba(200,155,60,.35); background: rgba(200,155,60,.05); }
@@ -415,7 +416,7 @@ em { font-style: italic; }
 
 /* ---------- INQUIRY SECTION ---------- */
 .inquiry-section { padding: 7rem 0; background: var(--ivory); }
-.inquiry-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+.inquiry-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; max-width: 100%; min-width: 0; }
 .inquiry-lead { font-size: 1rem; color: var(--charcoal-mid); margin-top: 1.5rem; line-height: 1.7; }
 .inquiry-contact { margin-top: 2rem; }
 .inquiry-contact a {
@@ -426,6 +427,7 @@ em { font-style: italic; }
 .inquiry-form-wrap {
     background: var(--white); border: 1px solid rgba(31,41,51,.06);
     border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);
+    box-sizing: border-box; max-width: 100%; overflow: hidden;
 }
 .form-row { margin-bottom: 1.25rem; }
 .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -589,6 +591,17 @@ em { font-style: italic; }
     .trust-divider { width: 40px; height: 1px; }
     .experience-grid { grid-template-columns: 1fr; }
     .form-row-half { grid-template-columns: 1fr; }
+    .booking-paths { padding: 4rem 0; }
+    .booking-paths .section-headline { font-size: 1.8rem; margin-bottom: 2rem; }
+    .path-grid { max-width: 100%; padding: 0; }
+    .path-card { padding: 1.75rem 1.25rem; }
+    .path-title { font-size: 1.35rem; }
+    .path-desc { font-size: .88rem; }
+    .path-badge { left: 1.25rem; }
+    .inquiry-section { padding: 4rem 0; }
+    .inquiry-layout { gap: 2rem; }
+    .inquiry-form-wrap { padding: 1.5rem; }
+    .form-group input, .form-group textarea { padding: .75rem .85rem; font-size: .9rem; }
     .footer-inner { flex-direction: column; gap: 2rem; }
     .footer-links { gap: 2.5rem; }
     .hero-headline { font-size: clamp(2.4rem, 8vw, 3.5rem); }
@@ -598,11 +611,28 @@ em { font-style: italic; }
 }
 @media (max-width: 480px) {
     body { font-size: 16px; }
-    .section-container { padding: 0 1.25rem; }
-    .hero-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .header-inner { padding: 0 1.25rem; }
-    .inquiry-form-wrap { padding: 1.5rem; }
-    .exp-card { padding: 1.75rem 1.5rem; }
-    .path-card { padding: 2rem 1.5rem; }
-    .btn { padding: .8rem 1.6rem; font-size: .85rem; }
+    .section-container { padding: 0 1rem; }
+    .hero-inner { padding-left: 1rem; padding-right: 1rem; }
+    .header-inner { padding: 0 1rem; }
+    .booking-paths { padding: 3rem 0; }
+    .booking-paths .section-headline { font-size: 1.5rem; }
+    .path-grid { gap: 1.25rem; }
+    .path-card { padding: 1.5rem 1rem; }
+    .path-title { font-size: 1.2rem; }
+    .path-desc { font-size: .85rem; margin-bottom: 1.5rem; }
+    .path-badge { font-size: .6rem; padding: .25rem .7rem; left: 1rem; }
+    .path-icon { width: 36px; height: 36px; margin-bottom: .75rem; }
+    .inquiry-section { padding: 3rem 0; }
+    .inquiry-form-wrap { padding: 1.25rem; }
+    .inquiry-layout { gap: 1.5rem; }
+    .inquiry-lead { font-size: .9rem; }
+    .form-group input, .form-group textarea { padding: .7rem .75rem; font-size: .88rem; }
+    .form-group label { font-size: .72rem; }
+    .exp-card { padding: 1.5rem 1.25rem; }
+    .btn { padding: .75rem 1.4rem; font-size: .82rem; }
+    .btn-full { padding: .85rem 1rem; }
+    .section-eyebrow { font-size: .7rem; }
+    .section-headline { font-size: 1.5rem; }
+    .final-cta { padding: 4rem 0; }
+    .final-headline { font-size: 1.6rem; }
 }
