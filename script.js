@@ -35,27 +35,38 @@
             }
         });
 
-        // Close when tapping backdrop
         if (backdrop) {
             backdrop.addEventListener('click', closeNav);
         }
-
-        // Close when tapping a nav link
-        nav.querySelectorAll('.nav-link').forEach(function (link) {
-            link.addEventListener('click', closeNav);
-        });
     }
 
+    // Handle all anchor links — including mobile nav links
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
-            var target = document.querySelector(this.getAttribute('href'));
+            var href = this.getAttribute('href');
+            var target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 80;
-                window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - hh, behavior: 'smooth' });
+
+                // If mobile nav is open, close it first, then scroll after a short delay
+                if (nav && nav.classList.contains('open')) {
+                    closeNav();
+                    setTimeout(function () {
+                        var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 80;
+                        var top = target.getBoundingClientRect().top + window.scrollY - hh;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }, 450);
+                } else {
+                    var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 80;
+                    var top = target.getBoundingClientRect().top + window.scrollY - hh;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                }
             }
         });
     });
+
+    // Handle external links in mobile nav (Book Online)
+    // These work naturally since they have full URLs, not hash links
 
     var revealEls = document.querySelectorAll('.exp-card, .pillar, .path-card, .trust-item, .inquiry-form-wrap, .why-intro, .final-cta-inner');
     revealEls.forEach(function (el) { el.classList.add('reveal'); });
