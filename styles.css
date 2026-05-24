@@ -103,16 +103,21 @@ em { font-style: italic; }
 .logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; }
 .logo-text {
     font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
-    font-weight: 600; letter-spacing: 0em;
+    font-weight: 600; letter-spacing: 0em; color: var(--gold);
+}
+.logo-gold {
     background: linear-gradient(90deg, #D4A438, #F0D080, #C89B3C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-weight: 600;
 }
-.logo-text-light {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
-    font-weight: 400; color: #BEA06A; letter-spacing: 0em;
+.logo-muted {
+    color: #BEA06A;
+    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
 }
+
 
 /* Logo text - prevent awkward wrap on mobile */
 .logo-text {
@@ -621,24 +626,12 @@ em { font-style: italic; }
     .header-inner { justify-content: space-between; padding: 0 1.25rem; }
     .header-logo { flex: 0 0 auto; gap: 0; }
     .logo-img { display: block; width: 36px; height: 36px; }
-    .logo-text { display: none; }
+
     .logo-text-break { display: none; }
-    .header-inner::after {
-        content: 'IndyDaveTravel';
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 1.35rem;
-        font-weight: 600;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        letter-spacing: 0em;
-        background: linear-gradient(90deg, #D4A438 0%, #F0D080 20%, #C89B3C 40%, #D4A438 58%, #BEA06A 59%, #BEA06A 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
     .header-inner { position: relative; }
+    .header-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+    .logo-img { position: absolute; left: -48px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; }
+    .logo-text { font-size: 1.35rem; white-space: nowrap; }
     .trust-inner { flex-direction: column; align-items: center; gap: 2rem; }
     .trust-divider { width: 40px; height: 1px; }
     .experience-grid { grid-template-columns: 1fr; }
