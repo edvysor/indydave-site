@@ -30,12 +30,23 @@
                     <li><a href="https://indydave.inteletravel.com" class="nav-link nav-cta" target="_blank" rel="noopener noreferrer">Book Online</a></li>
                 </ul>
             </nav>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu" aria-expanded="false">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation menu" aria-expanded="false" onclick="document.getElementById('mobileOverlay').style.display='flex'">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
-    <div class="nav-backdrop" id="navBackdrop"></div>
+    <!-- Mobile Navigation Overlay - completely independent from desktop nav -->
+    <div id="mobileOverlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(8,24,39,.97); flex-direction:column; justify-content:center; align-items:center; gap:0;">
+        <button onclick="document.getElementById('mobileOverlay').style.display='none'" style="position:absolute; top:20px; right:20px; background:none; border:none; cursor:pointer; padding:12px; z-index:10000;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 6L22 22M22 6L6 22" stroke="#C89B3C" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <a href="#experiences" onclick="document.getElementById('mobileOverlay').style.display='none'" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:rgba(247,243,234,.7); padding:1.2rem 2rem; text-decoration:none; letter-spacing:.08em; text-transform:uppercase; display:block; text-align:center;">Experiences</a>
+        <a href="#why" onclick="document.getElementById('mobileOverlay').style.display='none'" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:rgba(247,243,234,.7); padding:1.2rem 2rem; text-decoration:none; letter-spacing:.08em; text-transform:uppercase; display:block; text-align:center;">Why Work With Me</a>
+        <a href="#plan" onclick="document.getElementById('mobileOverlay').style.display='none'" style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:rgba(247,243,234,.7); padding:1.2rem 2rem; text-decoration:none; letter-spacing:.08em; text-transform:uppercase; display:block; text-align:center;">Plan a Journey</a>
+        <a href="https://indydave.inteletravel.com" target="_blank" rel="noopener noreferrer" onclick="document.getElementById('mobileOverlay').style.display='none'" style="font-family:'Source Sans 3',sans-serif; font-size:.9rem; font-weight:600; color:#081827; background:linear-gradient(135deg,#C89B3C,#D6A84A); padding:.9rem 2.5rem; border-radius:4px; text-decoration:none; letter-spacing:.08em; text-transform:uppercase; margin-top:1rem; display:inline-block; text-align:center;">Book Online</a>
+    </div>
+
+    
 
     <main>
         <section class="hero" id="hero">
@@ -277,121 +288,6 @@
         header.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
     header.classList.toggle('scrolled', window.scrollY > 40);
-
-    // Mobile nav elements
-    var toggle = document.getElementById('mobileToggle');
-    var nav = document.getElementById('mainNav');
-    var backdrop = document.getElementById('navBackdrop');
-    var isMobileNavOpen = false;
-
-    function closeNav() {
-        if (!nav) return;
-        isMobileNavOpen = false;
-        nav.classList.remove('open');
-        if (toggle) {
-            toggle.classList.remove('active');
-            toggle.setAttribute('aria-expanded', 'false');
-        }
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        if (backdrop) backdrop.classList.remove('visible');
-    }
-
-    function openNav() {
-        if (!nav) return;
-        isMobileNavOpen = true;
-        nav.classList.add('open');
-        if (toggle) {
-            toggle.classList.add('active');
-            toggle.setAttribute('aria-expanded', 'true');
-        }
-        document.body.style.overflow = 'hidden';
-        if (backdrop) backdrop.classList.add('visible');
-    }
-
-    // Toggle button
-    if (toggle) {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (isMobileNavOpen) {
-                closeNav();
-            } else {
-                openNav();
-            }
-        });
-    }
-
-    // Backdrop click to close
-    if (backdrop) {
-        backdrop.addEventListener('click', function (e) {
-            e.preventDefault();
-            closeNav();
-        });
-    }
-
-    // Scroll to a target section
-    function doScroll(targetEl) {
-        var hh = 80;
-        try {
-            hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 80;
-        } catch (err) { hh = 80; }
-        var y = targetEl.getBoundingClientRect().top + window.pageYOffset - hh;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-
-    // MOBILE NAV LINKS - handle separately with delay
-    if (nav) {
-        var mobileLinks = nav.querySelectorAll('a');
-        for (var i = 0; i < mobileLinks.length; i++) {
-            (function (link) {
-                link.addEventListener('click', function (e) {
-                    var href = link.getAttribute('href');
-
-                    // External links (Book Online) - let them work normally
-                    if (href && href.indexOf('http') === 0) {
-                        closeNav();
-                        return; // allow default behavior
-                    }
-
-                    // Internal anchor links
-                    if (href && href.indexOf('#') === 0) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        var targetEl = document.querySelector(href);
-                        if (!targetEl) return;
-
-                        // Close the nav first
-                        closeNav();
-
-                        // Wait for nav to close, then scroll
-                        setTimeout(function () {
-                            doScroll(targetEl);
-                        }, 600);
-                    }
-                });
-            })(mobileLinks[i]);
-        }
-    }
-
-    // DESKTOP / OTHER anchor links (not inside mobile nav)
-    var allAnchors = document.querySelectorAll('a[href^="#"]');
-    for (var j = 0; j < allAnchors.length; j++) {
-        (function (anchor) {
-            // Skip links inside the mobile nav - already handled above
-            if (nav && nav.contains(anchor)) return;
-
-            anchor.addEventListener('click', function (e) {
-                var href = anchor.getAttribute('href');
-                var target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    doScroll(target);
-                }
-            });
-        })(allAnchors[j]);
-    }
 
     // Scroll reveal
     var revealEls = document.querySelectorAll('.exp-card, .pillar, .path-card, .trust-item, .inquiry-form-wrap, .why-intro, .final-cta-inner');
