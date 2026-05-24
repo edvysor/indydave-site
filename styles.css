@@ -611,7 +611,11 @@ em { font-style: italic; }
     .nav-link { font-size: 1rem; color: rgba(247,243,234,.7); }
     .nav-cta { width: 100%; text-align: center; }
     .mobile-toggle { display: flex; }
-    .logo-text { font-size: 1.1rem; }
+    .header-inner { justify-content: center; position: relative; }
+    .header-logo { flex: 1; justify-content: center; }
+    .mobile-toggle { position: absolute; right: 1rem; }
+    .logo-img { display: none; }
+    .logo-text { font-size: 1.55rem; text-align: center; }
     .logo-text-break { display: none; }
     .trust-inner { flex-direction: column; align-items: center; gap: 2rem; }
     .trust-divider { width: 40px; height: 1px; }
