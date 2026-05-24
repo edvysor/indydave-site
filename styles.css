@@ -103,13 +103,16 @@ em { font-style: italic; }
 .logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; }
 .logo-text {
     font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
-    font-weight: 600; letter-spacing: .02em;
+    font-weight: 600; letter-spacing: 0em;
     background: linear-gradient(90deg, #D4A438, #F0D080, #C89B3C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-.logo-text-light { font-weight: 400; -webkit-text-fill-color: var(--gold-soft); opacity: .8; }
+.logo-text-light {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    font-weight: 400; color: #BEA06A; letter-spacing: 0em;
+}
 
 /* Logo text - prevent awkward wrap on mobile */
 .logo-text {
@@ -621,7 +624,7 @@ em { font-style: italic; }
     .logo-text { display: none; }
     .logo-text-break { display: none; }
     .header-inner::after {
-        content: 'IndyDave Travel';
+        content: 'IndyDaveTravel';
         font-family: 'Cormorant Garamond', serif;
         font-size: 1.35rem;
         font-weight: 600;
@@ -629,8 +632,8 @@ em { font-style: italic; }
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
-        letter-spacing: .02em;
-        background: linear-gradient(90deg, #D4A438 0%, #F0D080 25%, #C89B3C 42%, #A8843A 55%, #D4B868 72%, #E8CB78 85%, #C49838 100%);
+        letter-spacing: 0em;
+        background: linear-gradient(90deg, #D4A438 0%, #F0D080 20%, #C89B3C 40%, #D4A438 58%, #BEA06A 59%, #BEA06A 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
