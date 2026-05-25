@@ -417,7 +417,7 @@ em { font-style: italic; }
 .why-section { padding: 0 0 5rem 0; background: var(--ivory); }
 .why-section-header {
     background: var(--navy-deep);
-    padding: 4rem 2rem 3.5rem;
+    padding: 4rem 1.5rem 3.5rem;
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
@@ -444,7 +444,7 @@ em { font-style: italic; }
     margin-bottom: 0;
     line-height: 1.1;
 }
-.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; max-width: var(--max-width); margin: 0 auto; padding: 0 2.5rem; }
 .why-lead {
     font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
     line-height: 1.6; color: var(--charcoal); margin-top: 1.5rem; margin-bottom: 1rem;
@@ -712,6 +712,11 @@ em { font-style: italic; }
     .path-title { font-size: 1.35rem; }
     .path-desc { font-size: .88rem; }
     .path-badge { left: 1.25rem; }
+    .why-layout { padding: 0 1.5rem; }
+    .why-lead { font-size: 1.15rem; }
+    .why-sub { font-size: .9rem; }
+    .pillar { padding-left: 3rem; }
+    .pillar-desc { font-size: .88rem; }
     .inquiry-section { padding: 4rem 0; }
     .inquiry-layout { gap: 2rem; }
     .inquiry-form-wrap { padding: 1.5rem; }
@@ -736,6 +741,11 @@ em { font-style: italic; }
     .path-desc { font-size: .85rem; margin-bottom: 1.5rem; }
     .path-badge { font-size: .6rem; padding: .25rem .7rem; left: 1rem; }
     .path-icon { width: 36px; height: 36px; margin-bottom: .75rem; }
+    .why-layout { padding: 0 1.25rem; }
+    .why-lead { font-size: 1.05rem; }
+    .pillar { padding-left: 2.5rem; }
+    .pillar-number { font-size: 1.3rem; }
+    .pillar-title { font-size: 1.15rem; }
     .inquiry-section { padding: 3rem 0; }
     .inquiry-form-wrap { padding: 1.25rem; }
     .inquiry-layout { gap: 1.5rem; }
